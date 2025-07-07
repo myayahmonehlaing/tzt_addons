@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_purchase_report_pivot_inherit_order_type" model="ir.ui.view">
+        <field name="name">purchase.report.pivot.inherit.order.type</field>
+        <field name="model">purchase.report</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_total']" position="after">
+                <field name="order_type_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

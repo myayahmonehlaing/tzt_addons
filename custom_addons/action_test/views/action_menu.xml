@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_test" model="ir.actions.act_window">
+            <field name="name">Action Test</field>
+            <field name="res_model">sample.test</field>
+            <field name="view_mode">kanban,graph,list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Follow your dream with meovv!
+                </p>
+            </field>
+        </record>
+        <menuitem id="root_menu_action_form" name="Root Menu"/>
+        <menuitem id="first_level_menu_action_test" name="Test some action" parent="root_menu_action_form"/>
+
+
+        <menuitem id="root_action_test_form"
+                  name="Action"
+                  web_icon="action_test,static/description/icon.png"/>
+
+        <menuitem id="first_level_menu_action_test"
+                  name="Test some action"
+                  parent="root_menu_action_form"/>
+
+        <menuitem id="action_menu_action_test"
+                  name="Action Try"
+                  parent="first_level_menu_action_test"
+                  action="action_test"/>
+        <record id="action_test_view_list" model="ir.ui.view">
+            <field name="name">sample.test.list</field>
+            <field name="model">sample.test</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="image" widget="image" options="{'size': [30, 30]}"/>
+                    <field name="name"/>
+                    <field name="apply_job"/>
+                    <field name="dob"/>
+                </list>
+            </field>
+        </record>
+    </data>
+</odoo>
