@@ -1,0 +1,12 @@
+<odoo>
+    <record id="purchase_order_form_inherit_fixed_discount" model="ir.ui.view">
+        <field name="name">purchase.order.form.fixed.discount</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='products']//field[@name='order_line']//field[@name='discount']" position="after">
+                <field name="fixed_discount" string="F_Disc.$" readonly="qty_invoiced != 0" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
