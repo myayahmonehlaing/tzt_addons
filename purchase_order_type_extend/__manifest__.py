@@ -1,0 +1,21 @@
+{
+    'name': 'Purchase Order Type Extension',
+    'version': '1.0',
+    'summary': 'Add custom order types to Purchase Orders and Vendor Bills',
+    'category': 'Purchase',
+    'author': 'Thinzar Htun',
+    'depends': ['purchase', 'account' , 'stock','purchase_stock'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/purchase_order_type_views.xml',
+        'views/purchase_order_views.xml',
+        'views/account_move_views.xml',
+        'views/picking_form.xml',
+        'views/pivot_view.xml',
+        'views/purchase_cancel_reason_views.xml',
+        'views/purchase_cancel_wizard_view.xml',
+        'report/report_purchase_order_templates.xml',
+    ],
+    'installable': True,
+    'application': False,
+}
