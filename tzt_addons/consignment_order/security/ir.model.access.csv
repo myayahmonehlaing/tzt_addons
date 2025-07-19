@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_consignment_order_user,Consignment Order access,model_consignment_order,base.group_user,1,1,1,1
-access_consignment_order_line_user,Consignment Order Line access,model_consignment_order_line,base.group_user,1,1,1,1
-access_consignment_report_wizard_user,Consignment Report Wizard access,model_consignment_report_wizard,base.group_user,1,1,1,0
