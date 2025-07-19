@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Paper format for Consignment Order -->
+        <record id="paper_format_consignment_order" model="report.paperformat">
+            <field name="name">Consignment Order A4</field>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+        </record>
+
+        <!-- Report Action -->
+        <record id="action_report_consignment_order" model="ir.actions.report">
+            <field name="name">Consignment Order</field>
+            <field name="model">consignment.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">consignment_order.report_consignment_order_template</field>
+            <field name="print_report_name">'Consignment Order - %s' % (object.name)</field>
+            <field name="paperformat_id" ref="consignment_order.paper_format_consignment_order"/>
+        </record>
+
+    </data>
+</odoo>

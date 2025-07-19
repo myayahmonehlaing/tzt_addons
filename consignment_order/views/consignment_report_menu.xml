@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+
+    <menuitem id="menu_sales_reporting_consignment"
+              name="Consignment"
+              parent="sale.menu_sale_report"/>
+
+    <record id="action_open_consignment_report_wizard" model="ir.actions.act_window">
+        <field name="name">Consignment Report</field>
+        <field name="res_model">consignment.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_action_open_consignment_report_wizard"
+              name="Consignment Report"
+              parent="menu_sales_reporting_consignment"
+              action="action_open_consignment_report_wizard"/>
+
+</odoo>
