@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Group: Advanced Accounting User -->
+        <record id="group_advanced_accounting_user" model="res.groups">
+            <field name="name">Advanced User</field>
+            <field name="category_id" ref="base.module_category_accounting_accounting"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="accountant.menu_accounting" model="ir.ui.menu">
+            <field name="groups_id" eval="[
+                (4, ref('advanced_user.group_advanced_accounting_user')),
+                (4, ref('account.group_account_readonly')),
+                (4, ref('account.group_account_invoice')),
+                (4, ref('account.group_account_manager'))
+            ]"/>
+        </record>
+
+        <record id="account.menu_finance_receivables" model="ir.ui.menu">
+            <field name="groups_id" eval="[
+                (4, ref('account.group_account_invoice')),
+                (4, ref('account.group_account_readonly')),
+                (4, ref('account.group_account_manager'))
+            ]"/>
+        </record>
+
+        <!-- Rule: Allow posting account moves (Restricted by state) -->
+
+        <record id="advanced_user_rule_post_account_move" model="ir.rule">
+            <field name="name">Allow Advanced Users to Post Invoices</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="groups" eval="[(4, ref('advanced_user.group_advanced_accounting_user'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>  <!-- No restrictions -->
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+
+        <record id="advanced_user_rule_create_payment" model="ir.rule">
+            <field name="name">Allow Advanced Users to Create Payments</field>
+            <field name="model_id" ref="account.model_account_payment_register"/>
+            <field name="groups" eval="[(4, ref('advanced_user.group_advanced_accounting_user'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>  <!-- Ensures visibility -->
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+
+        <!-- Corrected Access Rights (Separated for Each Group) -->
+        <record id="access_account_move_advanced_user" model="ir.model.access">
+            <field name="name">account.move access for Advanced Users</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="group_id" ref="advanced_user.group_advanced_accounting_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="access_account_move_manager" model="ir.model.access">
+            <field name="name">account.move access for Account Managers</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="group_id" ref="account.group_account_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="partial_reconcile_access" model="ir.model.access">
+            <field name="name">Partial Reconcile Access for Advanced Users</field>
+            <field name="model_id" ref="account.model_account_partial_reconcile"/>
+            <field name="group_id" ref="advanced_user.group_advanced_accounting_user"/>
+            <field name="perm_read">True</field>
+            <field name="perm_create">True</field>
+            <field name="perm_write">True</field>
+            <field name="perm_unlink">False</field>
+        </record>
+
+    </data>
+</odoo>
