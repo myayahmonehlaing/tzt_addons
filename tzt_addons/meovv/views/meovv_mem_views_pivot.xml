@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="meovv_mem_view_pivot" model="ir.ui.view">
+            <field name="name">meovv.mem.pivot</field>
+            <field name="model">meovv.mem</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="gender" string="Gender" type="row"/>
+                    <field name="name" string="Stage Name" type="row"/>
+                    <field name="apply_job" string="Position" type="col"/>
+
+
+                </pivot>
+            </field>
+        </record>
+    </data>
+</odoo>

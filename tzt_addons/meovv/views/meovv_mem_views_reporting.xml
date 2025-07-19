@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_meovv_mem_analysis" model="ir.actions.act_window">
+            <field name="name">Meovv Member Analysis</field>
+            <field name="res_model">meovv.mem</field>
+            <field name="view_mode">graph,pivot</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    No data for analysis!
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="first_level_menu_reporting"
+                  name="Reporting"
+                  parent="root_menu_mem_form"/>
+
+        <menuitem id="action_menu_meovv_mem_analysis"
+                  name="Meovv Member Analysis"
+                  parent="first_level_menu_reporting"
+                  action="action_meovv_mem_analysis"/>
+    </data>
+</odoo>

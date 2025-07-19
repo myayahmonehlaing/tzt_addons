@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_consignment_order_template">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="doc">
+                <main class="page">
+
+                    <div style="text-align: right; margin-bottom: 10px;">
+                        <strong>Customer:</strong>
+                        <span t-field="doc.customer_id.name"/>
+                        <br/>
+                        <strong>Address:</strong>
+                        <span t-field="doc.customer_id.contact_address"/>
+                    </div>
+
+                    <h2 style="text-align: center; margin-bottom: 20px;">Consignment Order</h2>
+
+                    <h4>Order Info</h4>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tbody>
+                            <tr>
+                                <td style="width: 30%; padding: 4px;">Reference</td>
+                                <td style="padding: 4px;">
+                                    <span t-field="doc.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 4px;">Pricelist</td>
+                                <td style="padding: 4px;">
+                                    <span t-field="doc.pricelist_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 4px;">Date</td>
+                                <td style="padding: 4px;">
+                                    <span t-field="doc.date"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 4px;">Total</td>
+                                <td style="padding: 4px;">
+                                    <span t-field="doc.amount_total"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin-top: 30px;">Order Lines</h4>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 6px; text-align: left;">Product</th>
+                                <th style="padding: 6px; text-align: right;">Qty</th>
+                                <th style="padding: 6px; text-align: left;">UoM</th>
+                                <th style="padding: 6px; text-align: right;">Unit Price</th>
+                                <th style="padding: 6px; text-align: right;">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.order_line" t-as="line">
+                                <td style="padding: 4px;">
+                                    <span t-field="line.product_id.name"/>
+                                </td>
+                                <td style="padding: 4px; text-align: right;">
+                                    <span t-field="line.quantity"/>
+                                </td>
+                                <td style="padding: 4px;">
+                                    <span t-field="line.uom_id.name"/>
+                                </td>
+                                <td style="padding: 4px; text-align: right;">
+                                    <span t-field="line.price_unit"/>
+                                </td>
+                                <td style="padding: 4px; text-align: right;">
+                                    <span t-field="line.price_subtotal"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="page-break-after: always;"></div>
+
+                </main>
+            </t>
+        </t>
+    </template>
+</odoo>

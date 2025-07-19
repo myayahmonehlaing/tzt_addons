@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_meovv_mem" model="ir.actions.act_window">
+            <field name="name">Meovv new members</field>
+            <field name="res_model">meovv.mem</field>
+            <field name="view_mode">kanban,graph,list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Follow your dream with meovv!
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="root_menu_mem_form"
+                  name="Member Form"
+                  web_icon="meovv,static/description/icon.png"/>
+
+        <menuitem id="first_level_menu_meovv"
+                  name="Meovv's new members"
+                  parent="root_menu_mem_form"/>
+
+        <menuitem id="action_menu_meovv_mem"
+                  name="Meovv's new members"
+                  parent="first_level_menu_meovv"
+                  action="action_meovv_mem"/>
+        <record id="meovv_mem_view_list" model="ir.ui.view">
+            <field name="name">meovv.mem.list</field>
+            <field name="model">meovv.mem</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="image" widget="image" options="{'size': [30, 30]}"/>
+                    <field name="name"/>
+                    <field name="apply_job"/>
+                    <field name="dob"/>
+                </list>
+            </field>
+        </record>
+    </data>
+</odoo>

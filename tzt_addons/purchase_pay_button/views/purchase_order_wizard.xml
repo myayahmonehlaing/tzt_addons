@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_purchase_order_payment_wizard_form" model="ir.ui.view">
+        <field name="name">purchase.order.payment.wizard.form</field>
+        <field name="model">purchase.order.payment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Pay">
+                <!-- Invisible Fields -->
+                <field name="can_edit_wizard" invisible="1" force_save="1"/>
+                <field name="can_group_payments" invisible="1" force_save="1"/>
+                <field name="early_payment_discount_mode" invisible="1" force_save="1"/>
+                <field name="installments_mode" invisible="1"/>
+                <field name="installments_switch_amount" invisible="1"/>
+                <field name="installments_switch_html" invisible="1"/>
+                <field name="payment_type" invisible="1" force_save="1"/>
+                <field name="partner_type" invisible="1" force_save="1"/>
+                <field name="source_amount" invisible="1" force_save="1"/>
+                <field name="source_amount_currency" invisible="1" force_save="1"/>
+                <field name="source_currency_id" invisible="1" force_save="1"/>
+                <field name="company_id" invisible="1" force_save="1"/>
+                <field name="partner_id" invisible="1" force_save="1"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="custom_user_amount" invisible="1"/>
+                <field name="custom_user_currency_id" invisible="1"/>
+
+                <!-- Alerts -->
+                <div role="alert" class="alert alert-info" invisible="not hide_writeoff_section">
+                    <p class="m-0">
+                        <b>Early Payment Discount of
+                            <field name="payment_difference"/>
+                            has been applied.
+                        </b>
+                    </p>
+                </div>
+
+                <!-- Payment Fields -->
+                <group>
+                    <group name="group1">
+                        <field name="journal_id" options="{'no_open': True, 'no_create': True}" required="1"/>
+                        <field name="payment_method_id" context="{'hide_payment_journal_id': 1}" required="1"
+                               options="{'no_create': True, 'no_open': True}"/>
+                        <field name="partner_bank_id"
+                               readonly="payment_type == 'inbound'" required="require_partner_bank_account"
+                               placeholder="Account Number"
+                               context="{'display_account_trust': True, 'default_partner_id': partner_id}"/>
+                                <!-- Payment Difference Section -->
+                        <field name="payment_difference" readonly="1"
+                               invisible="payment_difference == 0"/>
+                        <field name="payment_difference_handling"
+                               widget="radio"
+                               invisible="payment_difference == 0"/>
+                        <field name="group_payment" invisible="not can_group_payments"/>
+                    </group>
+
+                    <group name="group2">
+                        <label for="amount"/>
+                        <div name="amount_div" class="o_row">
+                            <field name="amount" force_save="1"
+                                   readonly="not can_edit_wizard or can_group_payments and not group_payment"/>
+                            <field name="currency_id" required="1" options="{'no_create': True, 'no_open': True}"
+                                   invisible="not can_edit_wizard or can_group_payments and not group_payment"
+                                   groups="base.group_multi_currency"/>
+                        </div>
+                        <field name="payment_date"/>
+                        <field name="communication"
+                               invisible="not can_edit_wizard or (can_group_payments and not group_payment)"/>
+
+
+                    </group>
+                </group>
+
+                <!-- Footer Buttons -->
+                <footer>
+                    <button string="Create Payment" name="action_create_payment" type="object"
+                            class="oe_highlight" data-hotkey="q"/>
+                    <button string="Discard" class="btn btn-secondary" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
